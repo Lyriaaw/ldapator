@@ -1,0 +1,27 @@
+.add_school {
+  width : 90vw;
+  height : 90vh;
+  margin : auto;
+
+  display : flex;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-card {
+  background-color : white;
+  width : 50vw;
+  height : 50vh;
+
+  display : flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+mat-card-content {
+  display : flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}

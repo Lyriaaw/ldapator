@@ -1,0 +1,14 @@
+<div class="add_school">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        Add your school
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <input   matInput placeholder="School name" [(ngModel)]="school.name" name="school_name">
+      <input   matInput placeholder="LDAP directory" [(ngModel)]="school.directory" name="school_directory">
+      <button mat-button (click)="addSchool()">Add school</button>
+    </mat-card-content>
+  </mat-card>
+</div>
