@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="apache-ldap-api-1.0">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../ASI/apache-ldap-api-1.0.0-bin" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

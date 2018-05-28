@@ -15,8 +15,6 @@ public class User {
     @GeneratedValue
     private Long id;
 
-    private int internal_id;
-
     private String email;
 
     private String password;
@@ -54,13 +52,6 @@ public class User {
         this.id = id;
     }
 
-    public int getInternal_id() {
-        return internal_id;
-    }
-
-    public void setInternal_id(int internal_id) {
-        this.internal_id = internal_id;
-    }
 
     @JsonIgnore
     public School getSchool() {
