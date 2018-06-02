@@ -1,11 +1,32 @@
 <div class="login_wrapper">
-  <mat-card>
+  <mat-card class="login">
     <mat-card-title>
       Login
     </mat-card-title>
     <mat-card-content>
-      <input type="text" matInput placeholder="Username" [(ngModel)]="form.email" name="email">
-      <input type="password" matInput placeholder="Username" [(ngModel)]="form.password" name="password">
+      <form>
+
+        <mat-form-field>
+          <input type="text" matInput placeholder="Username" [(ngModel)]="form.email" name="email">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="password" matInput placeholder="Password" [(ngModel)]="form.password" name="password">
+        </mat-form-field>
+
+        <button mat-button class="primary" (click)="login()">Connection</button>
+      </form>
+
     </mat-card-content>
   </mat-card>
+
+
+  <mat-card  class="add_school_link">
+    <mat-card-content>
+      <div>
+        <a routerLink="/school">Add your school</a>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
 </div>

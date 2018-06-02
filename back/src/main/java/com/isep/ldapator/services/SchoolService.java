@@ -31,26 +31,38 @@ public class SchoolService {
 
 
     public School addUsers(UserAddDTO dto) throws Exception {
-        School school = schoolRepository.findBySecretHash(dto.getSchoolHash());
+        School school = schoolRepository.findBySecretHash(dto.getToken());
         if (school == null) throw new Exception("Hash is invalid");
 
         if (school.getUsers() == null) {
             school.setUsers(new ArrayList<>());
         }
 
-        dto.getUsers().forEach(user -> {
-            User databasedUser = userRepository.findByEmail(user.getEmail());
-            if (databasedUser == null) {
-                user.setSchool(school);
-                userRepository.save(user);
-            } else {
-                databasedUser.update(user);
-                userRepository.save(databasedUser);
-            }
-        });
+        User databasedUser = userRepository.findByEmail(dto.getEmail());
+        if (databasedUser == null) {
+            System.out.println("Not known in database");
+            User user = createEntityFromDto(dto, school);
+            userRepository.save(user);
+        } else {
+            databasedUser.update(dto);
+            System.out.println("Known in database");
+            userRepository.save(databasedUser);
+        }
 
 
 
         return school;
+    }
+
+    public User createEntityFromDto(UserAddDTO dto, School school) {
+        User user = new User();
+        user.setCommonName(dto.getCommonname());
+        user.setEmail(dto.getEmail());
+        user.setId(dto.getId());
+        user.setPassword(dto.getPassword());
+        user.setSurName(dto.getSurname());
+        user.setSchool(school);
+
+        return user;
     }
 }

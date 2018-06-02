@@ -12,9 +12,9 @@ import org.springframework.context.annotation.ComponentScan;
 public class LdapatorApplication {
 
 	public static void main(String[] args) {
-		for (byte current_byte : DigestUtils.md5("yes")) {
-			System.out.printf(String.valueOf((char) current_byte));
-		}
+//		for (byte current_byte : DigestUtils.md5("yes")) {
+//			System.out.printf(String.valueOf((char) current_byte));
+//		}
 
 		SpringApplication.run(LdapatorApplication.class, args);
 	}

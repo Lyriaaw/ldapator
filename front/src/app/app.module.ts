@@ -11,6 +11,7 @@ import {FormsModule} from '@angular/forms';
 import { SchoolComponent } from './school/school.component';
 import {HttpClientModule} from '@angular/common/http';
 import {ApiService} from './services/api.service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 
@@ -23,6 +24,7 @@ import {ApiService} from './services/api.service';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
