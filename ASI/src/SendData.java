@@ -41,36 +41,41 @@ public class SendData {
         
         String url="https://636f2f83.ngrok.io/schools/users";
         
-        
-        
-        for(int i=0;i<student.size();i++){
-            HttpClient client=new DefaultHttpClient();
+        HttpClient client=new DefaultHttpClient();
             HttpPost post = new HttpPost(url);
             post.setHeader("Content-Type","application/json");
-            String Token=prop.getProperty("Token");
+        
+        JSONArray Liste = new JSONArray();
+        JSONObject TokenListe=new JSONObject();
+        String Token=prop.getProperty("Token");
+        TokenListe.accumulate("token",Token);
+        for(int i=0;i<student.size();i++){
+            
+            
             JSONObject jsonObject=new JSONObject();
-            jsonObject.accumulate("token",Token);
             jsonObject.accumulate("id",student.get(i).getUserId());
             jsonObject.accumulate("email",student.get(i).getemail());
             jsonObject.accumulate("password",student.get(i).getPassword());
             jsonObject.accumulate("surname",student.get(i).getSurname());
             jsonObject.accumulate("commonname",student.get(i).getCommonName());
-
-            String json = jsonObject.toString();
-            StringEntity se= new StringEntity(json);
-            System.out.println(json);
-            post.setEntity(se);
-            HttpResponse httpResponse=client.execute(post);
-            InputStream inputStream = httpResponse.getEntity().getContent();
+            
+            Liste.put(jsonObject);
+            
+            
+           
             
         }
         
+        TokenListe.put("students", Liste);
+        String json = TokenListe.toString();
+        StringEntity se= new StringEntity(json);
+        System.out.println(TokenListe);
+        post.setEntity(se);
+        HttpResponse httpResponse=client.execute(post);
+           
         
         
-        
-            
-      
-        
+         
         
     }
 }
