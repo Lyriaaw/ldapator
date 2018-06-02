@@ -27,6 +27,7 @@ public class SchoolController {
 
     @RequestMapping(value="users", method = RequestMethod.POST)
     public ResponseEntity addUsers(@RequestBody UserAddDTO dto) {
+        System.out.println(dto.toString());
         try {
             School school = schoolService.addUsers(dto);
             return new ResponseEntity<>(school, HttpStatus.OK);
