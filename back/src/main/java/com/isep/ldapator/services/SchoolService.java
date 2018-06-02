@@ -3,6 +3,7 @@ package com.isep.ldapator.services;
 import com.isep.ldapator.entities.School;
 import com.isep.ldapator.entities.User;
 import com.isep.ldapator.entities.UserAddDTO;
+import com.isep.ldapator.entities.UserListDTO;
 import com.isep.ldapator.repositories.SchoolRepository;
 import com.isep.ldapator.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,26 +31,27 @@ public class SchoolService {
 
 
 
-    public School addUsers(UserAddDTO dto) throws Exception {
-        School school = schoolRepository.findBySecretHash(dto.getToken());
+    public School addUsers(UserListDTO listDTO) throws Exception {
+        School school = schoolRepository.findBySecretHash(listDTO.getToken());
         if (school == null) throw new Exception("Hash is invalid");
 
         if (school.getUsers() == null) {
             school.setUsers(new ArrayList<>());
         }
 
-        User databasedUser = userRepository.findByEmail(dto.getEmail());
-        if (databasedUser == null) {
-            System.out.println("Not known in database");
-            User user = createEntityFromDto(dto, school);
-            userRepository.save(user);
-        } else {
-            databasedUser.update(dto);
-            System.out.println("Known in database");
-            userRepository.save(databasedUser);
-        }
+        listDTO.getStudents().forEach(dto -> {
+            User databasedUser = userRepository.findByEmail(dto.getEmail());
+            if (databasedUser == null) {
+                System.out.println("Not known in database");
+                User user = createEntityFromDto(dto, school);
+                userRepository.save(user);
+            } else {
+                databasedUser.update(dto);
+                System.out.println("Known in database");
+                userRepository.save(databasedUser);
+            }
 
-
+        });
 
         return school;
     }

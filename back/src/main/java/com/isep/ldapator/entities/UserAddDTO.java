@@ -4,9 +4,6 @@ import java.util.List;
 
 public class UserAddDTO {
 
-
-    private String token;
-
     private long id;
 
     private String email;
@@ -17,14 +14,6 @@ public class UserAddDTO {
 
     private String commonname;
 
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
 
     public long getId() {
         return id;
@@ -69,8 +58,7 @@ public class UserAddDTO {
     @Override
     public String toString() {
         return "UserAddDTO{" +
-                "token='" + token + '\'' +
-                ", id=" + id +
+                "id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", surname='" + surname + '\'' +
