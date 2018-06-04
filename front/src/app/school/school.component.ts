@@ -11,8 +11,15 @@ export class SchoolComponent implements OnInit {
 
   school = {
     name: '',
-    directory: ''
+    directory: 'fzefzf'
   };
+
+  response = {
+    secretHash: '',
+    name: ''
+  };
+
+  answered = false;
 
   constructor(private api: ApiService) { }
 
@@ -20,8 +27,9 @@ export class SchoolComponent implements OnInit {
   }
 
   addSchool() {
-    this.api.post<School>('schools/add', this.school).subscribe(data => {
-      console.log(data);
+    this.api.post<any>('schools/add', this.school).subscribe(data => {
+      this.response = data;
+      this.answered = true;
     }, error => {
       console.warn(error);
     });

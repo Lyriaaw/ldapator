@@ -14,6 +14,16 @@ export class LoginComponent implements OnInit {
     password: ''
   };
 
+  logged = false;
+  loading = false;
+
+  user = {
+    commonName: '',
+    surName: ''
+  };
+
+  message = '';
+
   constructor(private api: ApiService) { }
 
   ngOnInit() {
@@ -21,8 +31,17 @@ export class LoginComponent implements OnInit {
 
 
   login() {
+    this.loading = true;
     this.api.post<any>('login', this.form).subscribe(data => {
-      console.log(data);
+      setTimeout(() => {
+        this.user = data;
+        this.logged = true;
+        this.loading = false;
+      });
+    }, error => {
+      console.warn('error');
+      this.message = 'invalid credentials';
+      this.loading = false;
     });
   }
 

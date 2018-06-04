@@ -1,5 +1,5 @@
 <div class="add_school">
-  <mat-card>
+  <mat-card *ngIf="!answered">
     <mat-card-header>
       <mat-card-title>
         Add your school
@@ -7,8 +7,21 @@
     </mat-card-header>
     <mat-card-content>
       <input   matInput placeholder="School name" [(ngModel)]="school.name" name="school_name">
-      <input   matInput placeholder="LDAP directory" [(ngModel)]="school.directory" name="school_directory">
+      <!--<input   matInput placeholder="LDAP directory" [(ngModel)]="school.directory" name="school_directory">-->
       <button mat-button (click)="addSchool()">Add school</button>
     </mat-card-content>
   </mat-card>
+
+  <mat-card *ngIf="answered">
+    <mat-card-header>
+      <mat-card-title>
+        Your school {{ response.name }} has been added
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      Your hash is {{ response.secretHash }}
+    </mat-card-content>
+  </mat-card>
+
+
 </div>

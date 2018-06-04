@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
 @Injectable()
 export class ApiService {
 
-  url = 'https://cors-anywhere.herokuapp.com/https://130b4d03.ngrok.io/';
+  url = 'https://cors-anywhere.herokuapp.com/https://f34063cd.ngrok.io/';
 
   constructor(private http: HttpClient) { }
 
